@@ -19,11 +19,12 @@ from app.utils import utils
 
 def mktimestamp(time_unit: float) -> str:
     """
-    将 edge_tts 使用的 100 纳秒时间单位转换为字幕时间戳。
+    Convert the 100-nanosecond time unit used by edge_tts to subtitle timestamp format.
 
-    edge_tts 7.x 不再导出旧版本里的 `mktimestamp`，但项目里旧字幕链路
-    还需要这个格式化函数来兼容 Azure v2、Gemini、SiliconFlow 这些
-    手工构造的字幕时间轴，因此这里内置一个等价实现。
+    edge_tts 7.x no longer exports the `mktimestamp` from older versions, but the project's
+    legacy subtitle pipeline needs this formatting function for compatibility with Azure v2,
+    Gemini, and SiliconFlow, which manually construct subtitle timelines. Therefore, an
+    equivalent implementation is built in here.
     """
     hour = math.floor(time_unit / 10**7 / 3600)
     minute = math.floor((time_unit / 10**7 / 60) % 60)
@@ -33,12 +34,12 @@ def mktimestamp(time_unit: float) -> str:
 
 def get_siliconflow_voices() -> list[str]:
     """
-    获取硅基流动的声音列表
+    Get the list of SiliconFlow voice options.
 
     Returns:
-        声音列表，格式为 ["siliconflow:FunAudioLLM/CosyVoice2-0.5B:alex", ...]
+        A list of voices in format ["siliconflow:FunAudioLLM/CosyVoice2-0.5B:alex", ...]
     """
-    # 硅基流动的声音列表和对应的性别（用于显示）
+    # SiliconFlow voice list with corresponding gender (for display)
     voices_with_gender = [
         ("FunAudioLLM/CosyVoice2-0.5B", "alex", "Male"),
         ("FunAudioLLM/CosyVoice2-0.5B", "anna", "Female"),
@@ -50,7 +51,7 @@ def get_siliconflow_voices() -> list[str]:
         ("FunAudioLLM/CosyVoice2-0.5B", "diana", "Female"),
     ]
 
-    # 添加siliconflow:前缀，并格式化为显示名称
+    # Add siliconflow: prefix and format as display name
     return [
         f"siliconflow:{model}:{voice}-{gender}"
         for model, voice, gender in voices_with_gender
@@ -59,12 +60,12 @@ def get_siliconflow_voices() -> list[str]:
 
 def get_gemini_voices() -> list[str]:
     """
-    获取Gemini TTS的声音列表
+    Get the list of Gemini TTS voice options.
     
     Returns:
-        声音列表，格式为 ["gemini:Zephyr-Female", "gemini:Puck-Male", ...]
+        A list of voices in format ["gemini:Zephyr-Female", "gemini:Puck-Male", ...]
     """
-    # Gemini TTS支持的语音列表
+    # Supported Gemini TTS voice list
     voices_with_gender = [
         ("Zephyr", "Female"),
         ("Puck", "Male"), 
@@ -83,7 +84,7 @@ def get_gemini_voices() -> list[str]:
         ("Atlas", "Male"),
     ]
     
-    # 添加gemini:前缀，并格式化为显示名称
+    # Add gemini: prefix and format as display name
     return [
         f"gemini:{voice}-{gender}"
         for voice, gender in voices_with_gender
@@ -98,1002 +99,15 @@ Gender: Female
 Name: af-ZA-WillemNeural
 Gender: Male
 
-Name: am-ET-AmehaNeural
-Gender: Male
-
-Name: am-ET-MekdesNeural
-Gender: Female
-
-Name: ar-AE-FatimaNeural
-Gender: Female
-
-Name: ar-AE-HamdanNeural
-Gender: Male
-
-Name: ar-BH-AliNeural
-Gender: Male
-
-Name: ar-BH-LailaNeural
-Gender: Female
-
-Name: ar-DZ-AminaNeural
-Gender: Female
-
-Name: ar-DZ-IsmaelNeural
-Gender: Male
-
-Name: ar-EG-SalmaNeural
-Gender: Female
-
-Name: ar-EG-ShakirNeural
-Gender: Male
-
-Name: ar-IQ-BasselNeural
-Gender: Male
-
-Name: ar-IQ-RanaNeural
-Gender: Female
-
-Name: ar-JO-SanaNeural
-Gender: Female
-
-Name: ar-JO-TaimNeural
-Gender: Male
-
-Name: ar-KW-FahedNeural
-Gender: Male
-
-Name: ar-KW-NouraNeural
-Gender: Female
-
-Name: ar-LB-LaylaNeural
-Gender: Female
-
-Name: ar-LB-RamiNeural
-Gender: Male
-
-Name: ar-LY-ImanNeural
-Gender: Female
-
-Name: ar-LY-OmarNeural
-Gender: Male
-
-Name: ar-MA-JamalNeural
-Gender: Male
-
-Name: ar-MA-MounaNeural
-Gender: Female
-
-Name: ar-OM-AbdullahNeural
-Gender: Male
-
-Name: ar-OM-AyshaNeural
-Gender: Female
-
-Name: ar-QA-AmalNeural
-Gender: Female
-
-Name: ar-QA-MoazNeural
-Gender: Male
-
-Name: ar-SA-HamedNeural
-Gender: Male
-
-Name: ar-SA-ZariyahNeural
-Gender: Female
-
-Name: ar-SY-AmanyNeural
-Gender: Female
-
-Name: ar-SY-LaithNeural
-Gender: Male
-
-Name: ar-TN-HediNeural
-Gender: Male
-
-Name: ar-TN-ReemNeural
-Gender: Female
-
-Name: ar-YE-MaryamNeural
-Gender: Female
-
-Name: ar-YE-SalehNeural
-Gender: Male
-
-Name: az-AZ-BabekNeural
-Gender: Male
-
-Name: az-AZ-BanuNeural
-Gender: Female
-
-Name: bg-BG-BorislavNeural
-Gender: Male
-
-Name: bg-BG-KalinaNeural
-Gender: Female
-
-Name: bn-BD-NabanitaNeural
-Gender: Female
-
-Name: bn-BD-PradeepNeural
-Gender: Male
-
-Name: bn-IN-BashkarNeural
-Gender: Male
-
-Name: bn-IN-TanishaaNeural
-Gender: Female
-
-Name: bs-BA-GoranNeural
-Gender: Male
-
-Name: bs-BA-VesnaNeural
-Gender: Female
-
-Name: ca-ES-EnricNeural
-Gender: Male
-
-Name: ca-ES-JoanaNeural
-Gender: Female
-
-Name: cs-CZ-AntoninNeural
-Gender: Male
-
-Name: cs-CZ-VlastaNeural
-Gender: Female
-
-Name: cy-GB-AledNeural
-Gender: Male
-
-Name: cy-GB-NiaNeural
-Gender: Female
-
-Name: da-DK-ChristelNeural
-Gender: Female
-
-Name: da-DK-JeppeNeural
-Gender: Male
-
-Name: de-AT-IngridNeural
-Gender: Female
-
-Name: de-AT-JonasNeural
-Gender: Male
-
-Name: de-CH-JanNeural
-Gender: Male
-
-Name: de-CH-LeniNeural
-Gender: Female
-
-Name: de-DE-AmalaNeural
-Gender: Female
-
-Name: de-DE-ConradNeural
-Gender: Male
-
-Name: de-DE-FlorianMultilingualNeural
-Gender: Male
-
-Name: de-DE-KatjaNeural
-Gender: Female
-
-Name: de-DE-KillianNeural
-Gender: Male
-
-Name: de-DE-SeraphinaMultilingualNeural
-Gender: Female
-
-Name: el-GR-AthinaNeural
-Gender: Female
-
-Name: el-GR-NestorasNeural
-Gender: Male
-
-Name: en-AU-NatashaNeural
-Gender: Female
-
-Name: en-AU-WilliamNeural
-Gender: Male
-
-Name: en-CA-ClaraNeural
-Gender: Female
-
-Name: en-CA-LiamNeural
-Gender: Male
-
-Name: en-GB-LibbyNeural
-Gender: Female
-
-Name: en-GB-MaisieNeural
-Gender: Female
-
-Name: en-GB-RyanNeural
-Gender: Male
-
-Name: en-GB-SoniaNeural
-Gender: Female
-
-Name: en-GB-ThomasNeural
-Gender: Male
-
-Name: en-HK-SamNeural
-Gender: Male
-
-Name: en-HK-YanNeural
-Gender: Female
-
-Name: en-IE-ConnorNeural
-Gender: Male
-
-Name: en-IE-EmilyNeural
-Gender: Female
-
-Name: en-IN-NeerjaExpressiveNeural
-Gender: Female
-
-Name: en-IN-NeerjaNeural
-Gender: Female
-
-Name: en-IN-PrabhatNeural
-Gender: Male
-
-Name: en-KE-AsiliaNeural
-Gender: Female
-
-Name: en-KE-ChilembaNeural
-Gender: Male
-
-Name: en-NG-AbeoNeural
-Gender: Male
-
-Name: en-NG-EzinneNeural
-Gender: Female
-
-Name: en-NZ-MitchellNeural
-Gender: Male
-
-Name: en-NZ-MollyNeural
-Gender: Female
-
-Name: en-PH-JamesNeural
-Gender: Male
-
-Name: en-PH-RosaNeural
-Gender: Female
-
-Name: en-SG-LunaNeural
-Gender: Female
-
-Name: en-SG-WayneNeural
-Gender: Male
-
-Name: en-TZ-ElimuNeural
-Gender: Male
-
-Name: en-TZ-ImaniNeural
-Gender: Female
-
-Name: en-US-AnaNeural
-Gender: Female
-
-Name: en-US-AndrewMultilingualNeural
-Gender: Male
-
-Name: en-US-AndrewNeural
-Gender: Male
-
-Name: en-US-AriaNeural
-Gender: Female
-
-Name: en-US-AvaMultilingualNeural
-Gender: Female
-
-Name: en-US-AvaNeural
-Gender: Female
-
-Name: en-US-BrianMultilingualNeural
-Gender: Male
-
-Name: en-US-BrianNeural
-Gender: Male
-
-Name: en-US-ChristopherNeural
-Gender: Male
-
-Name: en-US-EmmaMultilingualNeural
-Gender: Female
-
-Name: en-US-EmmaNeural
-Gender: Female
-
-Name: en-US-EricNeural
-Gender: Male
-
-Name: en-US-GuyNeural
-Gender: Male
-
-Name: en-US-JennyNeural
-Gender: Female
-
-Name: en-US-MichelleNeural
-Gender: Female
-
-Name: en-US-RogerNeural
-Gender: Male
-
-Name: en-US-SteffanNeural
-Gender: Male
-
-Name: en-ZA-LeahNeural
-Gender: Female
-
-Name: en-ZA-LukeNeural
-Gender: Male
-
-Name: es-AR-ElenaNeural
-Gender: Female
-
-Name: es-AR-TomasNeural
-Gender: Male
-
-Name: es-BO-MarceloNeural
-Gender: Male
-
-Name: es-BO-SofiaNeural
-Gender: Female
-
-Name: es-CL-CatalinaNeural
-Gender: Female
-
-Name: es-CL-LorenzoNeural
-Gender: Male
-
-Name: es-CO-GonzaloNeural
-Gender: Male
-
-Name: es-CO-SalomeNeural
-Gender: Female
-
-Name: es-CR-JuanNeural
-Gender: Male
-
-Name: es-CR-MariaNeural
-Gender: Female
-
-Name: es-CU-BelkysNeural
-Gender: Female
-
-Name: es-CU-ManuelNeural
-Gender: Male
-
-Name: es-DO-EmilioNeural
-Gender: Male
-
-Name: es-DO-RamonaNeural
-Gender: Female
-
-Name: es-EC-AndreaNeural
-Gender: Female
-
-Name: es-EC-LuisNeural
-Gender: Male
-
-Name: es-ES-AlvaroNeural
-Gender: Male
-
-Name: es-ES-ElviraNeural
-Gender: Female
-
-Name: es-ES-XimenaNeural
-Gender: Female
-
-Name: es-GQ-JavierNeural
-Gender: Male
-
-Name: es-GQ-TeresaNeural
-Gender: Female
-
-Name: es-GT-AndresNeural
-Gender: Male
-
-Name: es-GT-MartaNeural
-Gender: Female
-
-Name: es-HN-CarlosNeural
-Gender: Male
-
-Name: es-HN-KarlaNeural
-Gender: Female
-
-Name: es-MX-DaliaNeural
-Gender: Female
-
-Name: es-MX-JorgeNeural
-Gender: Male
-
-Name: es-NI-FedericoNeural
-Gender: Male
-
-Name: es-NI-YolandaNeural
-Gender: Female
-
-Name: es-PA-MargaritaNeural
-Gender: Female
-
-Name: es-PA-RobertoNeural
-Gender: Male
-
-Name: es-PE-AlexNeural
-Gender: Male
-
-Name: es-PE-CamilaNeural
-Gender: Female
-
-Name: es-PR-KarinaNeural
-Gender: Female
-
-Name: es-PR-VictorNeural
-Gender: Male
-
-Name: es-PY-MarioNeural
-Gender: Male
-
-Name: es-PY-TaniaNeural
-Gender: Female
-
-Name: es-SV-LorenaNeural
-Gender: Female
-
-Name: es-SV-RodrigoNeural
-Gender: Male
-
-Name: es-US-AlonsoNeural
-Gender: Male
-
-Name: es-US-PalomaNeural
-Gender: Female
-
-Name: es-UY-MateoNeural
-Gender: Male
-
-Name: es-UY-ValentinaNeural
-Gender: Female
-
-Name: es-VE-PaolaNeural
-Gender: Female
-
-Name: es-VE-SebastianNeural
-Gender: Male
-
-Name: et-EE-AnuNeural
-Gender: Female
-
-Name: et-EE-KertNeural
-Gender: Male
-
-Name: fa-IR-DilaraNeural
-Gender: Female
-
-Name: fa-IR-FaridNeural
-Gender: Male
-
-Name: fi-FI-HarriNeural
-Gender: Male
-
-Name: fi-FI-NooraNeural
-Gender: Female
-
-Name: fil-PH-AngeloNeural
-Gender: Male
-
-Name: fil-PH-BlessicaNeural
-Gender: Female
-
-Name: fr-BE-CharlineNeural
-Gender: Female
-
-Name: fr-BE-GerardNeural
-Gender: Male
-
-Name: fr-CA-AntoineNeural
-Gender: Male
-
-Name: fr-CA-JeanNeural
-Gender: Male
-
-Name: fr-CA-SylvieNeural
-Gender: Female
-
-Name: fr-CA-ThierryNeural
-Gender: Male
-
-Name: fr-CH-ArianeNeural
-Gender: Female
-
-Name: fr-CH-FabriceNeural
-Gender: Male
-
-Name: fr-FR-DeniseNeural
-Gender: Female
-
-Name: fr-FR-EloiseNeural
-Gender: Female
-
-Name: fr-FR-HenriNeural
-Gender: Male
-
-Name: fr-FR-RemyMultilingualNeural
-Gender: Male
-
-Name: fr-FR-VivienneMultilingualNeural
-Gender: Female
-
-Name: ga-IE-ColmNeural
-Gender: Male
-
-Name: ga-IE-OrlaNeural
-Gender: Female
-
-Name: gl-ES-RoiNeural
-Gender: Male
-
-Name: gl-ES-SabelaNeural
-Gender: Female
-
-Name: gu-IN-DhwaniNeural
-Gender: Female
-
-Name: gu-IN-NiranjanNeural
-Gender: Male
-
-Name: he-IL-AvriNeural
-Gender: Male
-
-Name: he-IL-HilaNeural
-Gender: Female
-
-Name: hi-IN-MadhurNeural
-Gender: Male
-
-Name: hi-IN-SwaraNeural
-Gender: Female
-
-Name: hr-HR-GabrijelaNeural
-Gender: Female
-
-Name: hr-HR-SreckoNeural
-Gender: Male
-
-Name: hu-HU-NoemiNeural
-Gender: Female
-
-Name: hu-HU-TamasNeural
-Gender: Male
-
-Name: id-ID-ArdiNeural
-Gender: Male
-
-Name: id-ID-GadisNeural
-Gender: Female
-
-Name: is-IS-GudrunNeural
-Gender: Female
-
-Name: is-IS-GunnarNeural
-Gender: Male
-
-Name: it-IT-DiegoNeural
-Gender: Male
-
-Name: it-IT-ElsaNeural
-Gender: Female
-
-Name: it-IT-GiuseppeMultilingualNeural
-Gender: Male
-
-Name: it-IT-IsabellaNeural
-Gender: Female
-
-Name: iu-Cans-CA-SiqiniqNeural
-Gender: Female
-
-Name: iu-Cans-CA-TaqqiqNeural
-Gender: Male
-
-Name: iu-Latn-CA-SiqiniqNeural
-Gender: Female
-
-Name: iu-Latn-CA-TaqqiqNeural
-Gender: Male
-
-Name: ja-JP-KeitaNeural
-Gender: Male
-
-Name: ja-JP-NanamiNeural
-Gender: Female
-
-Name: jv-ID-DimasNeural
-Gender: Male
-
-Name: jv-ID-SitiNeural
-Gender: Female
-
-Name: ka-GE-EkaNeural
-Gender: Female
-
-Name: ka-GE-GiorgiNeural
-Gender: Male
-
-Name: kk-KZ-AigulNeural
-Gender: Female
-
-Name: kk-KZ-DauletNeural
-Gender: Male
-
-Name: km-KH-PisethNeural
-Gender: Male
-
-Name: km-KH-SreymomNeural
-Gender: Female
-
-Name: kn-IN-GaganNeural
-Gender: Male
-
-Name: kn-IN-SapnaNeural
-Gender: Female
-
-Name: ko-KR-HyunsuMultilingualNeural
-Gender: Male
-
-Name: ko-KR-InJoonNeural
-Gender: Male
-
-Name: ko-KR-SunHiNeural
-Gender: Female
-
-Name: lo-LA-ChanthavongNeural
-Gender: Male
-
-Name: lo-LA-KeomanyNeural
-Gender: Female
-
-Name: lt-LT-LeonasNeural
-Gender: Male
-
-Name: lt-LT-OnaNeural
-Gender: Female
-
-Name: lv-LV-EveritaNeural
-Gender: Female
-
-Name: lv-LV-NilsNeural
-Gender: Male
-
-Name: mk-MK-AleksandarNeural
-Gender: Male
-
-Name: mk-MK-MarijaNeural
-Gender: Female
-
-Name: ml-IN-MidhunNeural
-Gender: Male
-
-Name: ml-IN-SobhanaNeural
-Gender: Female
-
-Name: mn-MN-BataaNeural
-Gender: Male
-
-Name: mn-MN-YesuiNeural
-Gender: Female
-
-Name: mr-IN-AarohiNeural
-Gender: Female
-
-Name: mr-IN-ManoharNeural
-Gender: Male
-
-Name: ms-MY-OsmanNeural
-Gender: Male
-
-Name: ms-MY-YasminNeural
-Gender: Female
-
-Name: mt-MT-GraceNeural
-Gender: Female
-
-Name: mt-MT-JosephNeural
-Gender: Male
-
-Name: my-MM-NilarNeural
-Gender: Female
-
-Name: my-MM-ThihaNeural
-Gender: Male
-
-Name: nb-NO-FinnNeural
-Gender: Male
-
-Name: nb-NO-PernilleNeural
-Gender: Female
-
-Name: ne-NP-HemkalaNeural
-Gender: Female
-
-Name: ne-NP-SagarNeural
-Gender: Male
-
-Name: nl-BE-ArnaudNeural
-Gender: Male
-
-Name: nl-BE-DenaNeural
-Gender: Female
-
-Name: nl-NL-ColetteNeural
-Gender: Female
-
-Name: nl-NL-FennaNeural
-Gender: Female
-
-Name: nl-NL-MaartenNeural
-Gender: Male
-
-Name: pl-PL-MarekNeural
-Gender: Male
-
-Name: pl-PL-ZofiaNeural
-Gender: Female
-
-Name: ps-AF-GulNawazNeural
-Gender: Male
-
-Name: ps-AF-LatifaNeural
-Gender: Female
-
-Name: pt-BR-AntonioNeural
-Gender: Male
-
-Name: pt-BR-FranciscaNeural
-Gender: Female
-
-Name: pt-BR-ThalitaMultilingualNeural
-Gender: Female
-
-Name: pt-PT-DuarteNeural
-Gender: Male
-
-Name: pt-PT-RaquelNeural
-Gender: Female
-
-Name: ro-RO-AlinaNeural
-Gender: Female
-
-Name: ro-RO-EmilNeural
-Gender: Male
-
-Name: ru-RU-DmitryNeural
-Gender: Male
-
-Name: ru-RU-SvetlanaNeural
-Gender: Female
-
-Name: si-LK-SameeraNeural
-Gender: Male
-
-Name: si-LK-ThiliniNeural
-Gender: Female
-
-Name: sk-SK-LukasNeural
-Gender: Male
-
-Name: sk-SK-ViktoriaNeural
-Gender: Female
-
-Name: sl-SI-PetraNeural
-Gender: Female
-
-Name: sl-SI-RokNeural
-Gender: Male
-
-Name: so-SO-MuuseNeural
-Gender: Male
-
-Name: so-SO-UbaxNeural
-Gender: Female
-
-Name: sq-AL-AnilaNeural
-Gender: Female
-
-Name: sq-AL-IlirNeural
-Gender: Male
-
-Name: sr-RS-NicholasNeural
-Gender: Male
-
-Name: sr-RS-SophieNeural
-Gender: Female
-
-Name: su-ID-JajangNeural
-Gender: Male
-
-Name: su-ID-TutiNeural
-Gender: Female
-
-Name: sv-SE-MattiasNeural
-Gender: Male
-
-Name: sv-SE-SofieNeural
-Gender: Female
-
-Name: sw-KE-RafikiNeural
-Gender: Male
-
-Name: sw-KE-ZuriNeural
-Gender: Female
-
-Name: sw-TZ-DaudiNeural
-Gender: Male
-
-Name: sw-TZ-RehemaNeural
-Gender: Female
-
-Name: ta-IN-PallaviNeural
-Gender: Female
-
-Name: ta-IN-ValluvarNeural
-Gender: Male
-
-Name: ta-LK-KumarNeural
-Gender: Male
-
-Name: ta-LK-SaranyaNeural
-Gender: Female
-
-Name: ta-MY-KaniNeural
-Gender: Female
-
-Name: ta-MY-SuryaNeural
-Gender: Male
-
-Name: ta-SG-AnbuNeural
-Gender: Male
-
-Name: ta-SG-VenbaNeural
-Gender: Female
-
-Name: te-IN-MohanNeural
-Gender: Male
-
-Name: te-IN-ShrutiNeural
-Gender: Female
-
-Name: th-TH-NiwatNeural
-Gender: Male
-
-Name: th-TH-PremwadeeNeural
-Gender: Female
-
-Name: tr-TR-AhmetNeural
-Gender: Male
-
-Name: tr-TR-EmelNeural
-Gender: Female
-
-Name: uk-UA-OstapNeural
-Gender: Male
-
-Name: uk-UA-PolinaNeural
-Gender: Female
-
-Name: ur-IN-GulNeural
-Gender: Female
-
-Name: ur-IN-SalmanNeural
-Gender: Male
-
-Name: ur-PK-AsadNeural
-Gender: Male
-
-Name: ur-PK-UzmaNeural
-Gender: Female
-
-Name: uz-UZ-MadinaNeural
-Gender: Female
-
-Name: uz-UZ-SardorNeural
-Gender: Male
-
-Name: vi-VN-HoaiMyNeural
-Gender: Female
-
-Name: vi-VN-NamMinhNeural
-Gender: Male
-
-Name: zh-CN-XiaoxiaoNeural
-Gender: Female
-
-Name: zh-CN-XiaoyiNeural
-Gender: Female
-
-Name: zh-CN-YunjianNeural
-Gender: Male
-
-Name: zh-CN-YunxiNeural
-Gender: Male
-
-Name: zh-CN-YunxiaNeural
-Gender: Male
-
-Name: zh-CN-YunyangNeural
-Gender: Male
-
-Name: zh-CN-liaoning-XiaobeiNeural
-Gender: Female
-
-Name: zh-CN-shaanxi-XiaoniNeural
-Gender: Female
-
-Name: zh-HK-HiuGaaiNeural
-Gender: Female
-
-Name: zh-HK-HiuMaanNeural
-Gender: Female
-
-Name: zh-HK-WanLungNeural
-Gender: Male
-
-Name: zh-TW-HsiaoChenNeural
-Gender: Female
-
-Name: zh-TW-HsiaoYuNeural
-Gender: Female
-
-Name: zh-TW-YunJheNeural
-Gender: Male
-
-Name: zu-ZA-ThandoNeural
-Gender: Female
-
-Name: zu-ZA-ThembaNeural
-Gender: Male
-
-
-Name: en-US-AvaMultilingualNeural-V2
-Gender: Female
-
-Name: en-US-AndrewMultilingualNeural-V2
-Gender: Male
-
-Name: en-US-EmmaMultilingualNeural-V2
-Gender: Female
-
-Name: en-US-BrianMultilingualNeural-V2
-Gender: Male
-
-Name: de-DE-FlorianMultilingualNeural-V2
-Gender: Male
-
-Name: de-DE-SeraphinaMultilingualNeural-V2
-Gender: Female
-
-Name: fr-FR-RemyMultilingualNeural-V2
-Gender: Male
-
-Name: fr-FR-VivienneMultilingualNeural-V2
-Gender: Female
-
-Name: zh-CN-XiaoxiaoMultilingualNeural-V2
-Gender: Female
     """.strip()
     voices = []
-    # 定义正则表达式模式，用于匹配 Name 和 Gender 行
+    # Define regex pattern to match Name and Gender lines
     pattern = re.compile(r"Name:\s*(.+)\s*Gender:\s*(.+)\s*", re.MULTILINE)
-    # 使用正则表达式查找所有匹配项
+    # Find all matches using regex
     matches = pattern.findall(azure_voices_str)
 
     for name, gender in matches:
-        # 应用过滤条件
+        # Apply filter conditions
         if filter_locals and any(
             name.lower().startswith(fl.lower()) for fl in filter_locals
         ):
@@ -1106,9 +120,7 @@ Gender: Female
 
 
 def parse_voice_name(name: str):
-    # zh-CN-XiaoyiNeural-Female
-    # zh-CN-YunxiNeural-Male
-    # zh-CN-XiaoxiaoMultilingualNeural-V2-Female
+    # Example formats: zh-CN-XiaoyiNeural-Female, zh-CN-YunxiNeural-Male, zh-CN-XiaoxiaoMultilingualNeural-V2-Female
     name = name.replace("-Female", "").replace("-Male", "").strip()
     return name
 
@@ -1121,12 +133,12 @@ def is_azure_v2_voice(voice_name: str):
 
 
 def is_siliconflow_voice(voice_name: str):
-    """检查是否是硅基流动的声音"""
+    """Check if the voice is a SiliconFlow voice."""
     return voice_name.startswith("siliconflow:")
 
 
 def is_gemini_voice(voice_name: str):
-    """检查是否是Gemini TTS的声音"""
+    """Check if the voice is a Gemini TTS voice."""
     return voice_name.startswith("gemini:")
 
 
@@ -1140,15 +152,15 @@ def tts(
     if is_azure_v2_voice(voice_name):
         return azure_tts_v2(text, voice_name, voice_file)
     elif is_siliconflow_voice(voice_name):
-        # 从voice_name中提取模型和声音
-        # 格式: siliconflow:model:voice-Gender
+        # Extract model and voice from voice_name
+        # Format: siliconflow:model:voice-Gender
         parts = voice_name.split(":")
         if len(parts) >= 3:
             model = parts[1]
-            # 移除性别后缀，例如 "alex-Male" -> "alex"
+            # Remove gender suffix, e.g. "alex-Male" -> "alex"
             voice_with_gender = parts[2]
             voice = voice_with_gender.split("-")[0]
-            # 构建完整的voice参数，格式为 "model:voice"
+            # Build the complete voice parameter in format "model:voice"
             full_voice = f"{model}:{voice}"
             return siliconflow_tts(
                 text, model, full_voice, voice_rate, voice_file, voice_volume
@@ -1157,11 +169,11 @@ def tts(
             logger.error(f"Invalid siliconflow voice name format: {voice_name}")
             return None
     elif is_gemini_voice(voice_name):
-        # 从voice_name中提取声音名称
-        # 格式: gemini:voice-Gender
+        # Extract voice name from voice_name
+        # Format: gemini:voice-Gender
         parts = voice_name.split(":")
         if len(parts) >= 2:
-            # 移除性别后缀，例如 "Zephyr-Female" -> "Zephyr"
+            # Remove gender suffix, e.g. "Zephyr-Female" -> "Zephyr"
             voice_with_gender = parts[1]
             voice = voice_with_gender.split("-")[0]
             return gemini_tts(text, voice, voice_rate, voice_file, voice_volume)
@@ -1183,11 +195,11 @@ def convert_rate_to_percent(rate: float) -> str:
 
 def ensure_file_path_exists(file_path: str) -> None:
     """
-    确保输出文件所在目录一定存在。
+    Ensure the output file's directory exists.
 
-    这里单独做一层兜底，是因为 edge_tts 7.x 在真正发起网络请求之前，
-    就会先打开目标音频文件；如果目录不存在，会直接因为本地文件路径报错，
-    从而掩盖真正的 TTS 行为结果。
+    This adds an extra layer of safety because edge_tts 7.x opens the target audio file
+    before making the actual network request. If the directory doesn't exist, it will
+    fail with a file path error, masking the true TTS behavior result.
     """
     dir_path = os.path.dirname(file_path)
     if dir_path:
@@ -1196,11 +208,11 @@ def ensure_file_path_exists(file_path: str) -> None:
 
 def ensure_legacy_submaker_fields(sub_maker: SubMaker) -> SubMaker:
     """
-    为项目里仍然沿用旧字幕结构的调用方补齐兼容字段。
+    Ensure compatibility fields exist for legacy subtitle structure still used in the project.
 
-    edge_tts 7.x 的 `SubMaker` 主要暴露 `cues/get_srt()`，但项目里 Azure v2、
-    Gemini、SiliconFlow 这些路径仍然会直接读写 `subs/offset`。这里统一补齐，
-    避免升级 edge_tts 后这些非 edge 路径被连带破坏。
+    edge_tts 7.x's `SubMaker` primarily exposes `cues/get_srt()`, but Azure v2, Gemini,
+    and SiliconFlow paths in the project still directly read/write `subs/offset`. This
+    ensures uniform compatibility to prevent breaking non-edge paths when upgrading edge_tts.
     """
     if not hasattr(sub_maker, "subs"):
         sub_maker.subs = []
@@ -1219,8 +231,8 @@ def azure_tts_v1(
         try:
             logger.info(f"start, voice name: {voice_name}, try: {i + 1}")
 
-            # edge_tts 7.x 已经提供同步流接口和新的字幕聚合器实现，
-            # 这里直接使用同步接口，避免继续依赖旧版本的异步流事件结构。
+            # edge_tts 7.x already provides synchronous stream interface and new subtitle aggregator.
+            # Use the sync interface directly to avoid relying on old async stream event structure.
             ensure_file_path_exists(voice_file)
             communicate = edge_tts.Communicate(
                 text,
@@ -1236,8 +248,8 @@ def azure_tts_v1(
                     if chunk_type == "audio":
                         file.write(chunk["data"])
                     elif chunk_type in ["WordBoundary", "SentenceBoundary"]:
-                        # 直接把 7.x 返回的边界事件喂给新的 SubMaker，
-                        # 这样后续可以复用官方生成的字幕与时间轴。
+                        # Feed boundary events from 7.x directly to the new SubMaker.
+                        # This allows reusing officially generated subtitles and timeline afterwards.
                         sub_maker.feed(chunk)
 
             if not sub_maker.get_srt():
@@ -1260,18 +272,18 @@ def siliconflow_tts(
     voice_volume: float = 1.0,
 ) -> Union[SubMaker, None]:
     """
-    使用硅基流动的API生成语音
+    Generate speech using SiliconFlow API.
 
     Args:
-        text: 要转换为语音的文本
-        model: 模型名称，如 "FunAudioLLM/CosyVoice2-0.5B"
-        voice: 声音名称，如 "FunAudioLLM/CosyVoice2-0.5B:alex"
-        voice_rate: 语音速度，范围[0.25, 4.0]
-        voice_file: 输出的音频文件路径
-        voice_volume: 语音音量，范围[0.6, 5.0]，需要转换为硅基流动的增益范围[-10, 10]
+        text: Text to convert to speech
+        model: Model name, e.g. "FunAudioLLM/CosyVoice2-0.5B"
+        voice: Voice name, e.g. "FunAudioLLM/CosyVoice2-0.5B:alex"
+        voice_rate: Speech speed, range [0.25, 4.0]
+        voice_file: Output audio file path
+        voice_volume: Speech volume, range [0.6, 5.0], converted to SiliconFlow gain range [-10, 10]
 
     Returns:
-        SubMaker对象或None
+        SubMaker object or None
     """
     text = text.strip()
     api_key = config.siliconflow.get("api_key", "")
@@ -1280,10 +292,10 @@ def siliconflow_tts(
         logger.error("SiliconFlow API key is not set")
         return None
 
-    # 将voice_volume转换为硅基流动的增益范围
-    # 默认voice_volume为1.0，对应gain为0
+    # Convert voice_volume to SiliconFlow gain range
+    # Default voice_volume is 1.0, corresponding to gain of 0
     gain = voice_volume - 1.0
-    # 确保gain在[-10, 10]范围内
+    # Ensure gain is within [-10, 10] range
     gain = max(-10, min(10, gain))
 
     url = "https://api.siliconflow.cn/v1/audio/speech"
@@ -1301,7 +313,7 @@ def siliconflow_tts(
 
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
 
-    for i in range(3):  # 尝试3次
+    for i in range(3):  # Try 3 times
         try:
             logger.info(
                 f"start siliconflow tts, model: {model}, voice: {voice}, try: {i + 1}"
@@ -1310,31 +322,31 @@ def siliconflow_tts(
             response = requests.post(url, json=payload, headers=headers)
 
             if response.status_code == 200:
-                # 保存音频文件
+                # Save audio file
                 with open(voice_file, "wb") as f:
                     f.write(response.content)
 
-                # 这里仍然沿用项目原有的字幕结构，因此需要补齐旧字段。
+                # This still uses the project's legacy subtitle structure, so pad legacy fields.
                 sub_maker = ensure_legacy_submaker_fields(SubMaker())
 
-                # 获取音频文件的实际长度
+                # Get the actual duration of the audio file
                 try:
-                    # 尝试使用moviepy获取音频长度
+                    # Try using moviepy to get audio duration
                     from moviepy import AudioFileClip
 
                     audio_clip = AudioFileClip(voice_file)
                     audio_duration = audio_clip.duration
                     audio_clip.close()
 
-                    # 将音频长度转换为100纳秒单位（与edge_tts兼容）
+                    # Convert audio duration to 100-nanosecond units (compatible with edge_tts)
                     audio_duration_100ns = int(audio_duration * 10000000)
 
-                    # 使用文本分割来创建更准确的字幕
-                    # 将文本按标点符号分割成句子
+                    # Use text splitting to create more accurate subtitles
+                    # Split text by punctuation into sentences
                     sentences = utils.split_string_by_punctuations(text)
 
                     if sentences:
-                        # 计算每个句子的大致时长（按字符数比例分配）
+                        # Calculate approximate duration for each sentence (proportional allocation by character count)
                         total_chars = sum(len(s) for s in sentences)
                         char_duration = (
                             audio_duration_100ns / total_chars if total_chars > 0 else 0
@@ -1345,28 +357,28 @@ def siliconflow_tts(
                             if not sentence.strip():
                                 continue
 
-                            # 计算当前句子的时长
+                            # Calculate duration for current sentence
                             sentence_chars = len(sentence)
                             sentence_duration = int(sentence_chars * char_duration)
 
-                            # 添加到SubMaker
+                            # Add to SubMaker
                             sub_maker.subs.append(sentence)
                             sub_maker.offset.append(
                                 (current_offset, current_offset + sentence_duration)
                             )
 
-                            # 更新偏移量
+                            # Update offset
                             current_offset += sentence_duration
                     else:
-                        # 如果无法分割，则使用整个文本作为一个字幕
+                        # If unable to split, use entire text as single subtitle
                         sub_maker.subs = [text]
                         sub_maker.offset = [(0, audio_duration_100ns)]
 
                 except Exception as e:
                     logger.warning(f"Failed to create accurate subtitles: {str(e)}")
-                    # 回退到简单的字幕
+                    # Fall back to simple subtitle
                     sub_maker.subs = [text]
-                    # 使用音频文件的实际长度，如果无法获取，则假设为10秒
+                    # Use actual audio duration, or assume 10 seconds if unable to get
                     sub_maker.offset = [
                         (
                             0,
@@ -1492,17 +504,17 @@ def gemini_tts(
     voice_volume: float = 1.0,
 ) -> Union[SubMaker, None]:
     """
-    使用Google Gemini TTS生成语音
+    Generate speech using Google Gemini TTS.
     
     Args:
-        text: 要转换的文本
-        voice_name: 语音名称，如 "Zephyr", "Puck" 等
-        voice_rate: 语音速率（当前未使用）
-        voice_file: 输出音频文件路径
-        voice_volume: 音频音量（当前未使用）
+        text: Text to convert
+        voice_name: Voice name, e.g. "Zephyr", "Puck", etc.
+        voice_rate: Speech rate (currently unused)
+        voice_file: Output audio file path
+        voice_volume: Audio volume (currently unused)
         
     Returns:
-        SubMaker对象或None
+        SubMaker object or None
     """
     import base64
     import json
@@ -1511,7 +523,7 @@ def gemini_tts(
     import google.generativeai as genai
     
     try:
-        # 配置Gemini API
+        # Configure Gemini API
         api_key = config.app.get("gemini_api_key", "")
         if not api_key:
             logger.error("Gemini API key is not set")
@@ -1521,7 +533,7 @@ def gemini_tts(
         
         logger.info(f"start, voice name: {voice_name}, try: 1")
         
-        # 使用Gemini TTS API
+        # Use Gemini TTS API
         model = genai.GenerativeModel("gemini-2.5-flash-preview-tts")
         
         generation_config = {
@@ -1540,12 +552,12 @@ def gemini_tts(
             generation_config=generation_config
         )
         
-        # 检查响应
+        # Check response
         if not response.candidates or not response.candidates[0].content:
             logger.error("No audio content received from Gemini TTS")
             return None
             
-        # 获取音频数据
+        # Get audio data
         audio_data = None
         for part in response.candidates[0].content.parts:
             if hasattr(part, 'inline_data') and part.inline_data:
@@ -1556,47 +568,45 @@ def gemini_tts(
             logger.error("No audio data found in response")
             return None
             
-        # 音频数据已经是原始字节，不需要base64解码
+        # Audio data is already raw bytes, no base64 decode needed
         if isinstance(audio_data, str):
-            # 如果是字符串，则需要base64解码
+            # If string, need base64 decode
             audio_bytes = base64.b64decode(audio_data)
         else:
-            # 如果已经是字节，直接使用
+            # If already bytes, use directly
             audio_bytes = audio_data
         
-        # 尝试不同的音频格式 - Gemini可能返回不同的格式
+        # Try different audio formats - Gemini may return different formats
         audio_segment = None
         
-        # Gemini返回Linear PCM格式，按照文档参数解析
+        # Gemini returns Linear PCM format, parse according to documentation parameters
         try:
             audio_segment = AudioSegment.from_file(
                 io.BytesIO(audio_bytes), 
                 format="raw",
-                frame_rate=24000,  # Gemini TTS默认采样率
-                channels=1,        # 单声道
+                frame_rate=24000,  # Gemini TTS default sample rate
+                channels=1,        # Mono
                 sample_width=2     # 16-bit
             )
         except Exception as e:
             logger.error(f"Failed to load PCM audio: {e}")
             return None
         
-        # 导出为MP3格式
+        # Export as MP3 format
         audio_segment.export(voice_file, format="mp3")
         
         logger.info(f"completed, output file: {voice_file}")
         
-        # Gemini 路径仍然按项目的旧字幕结构写入，因此补齐旧字段。
+        # Gemini path still uses project's legacy subtitle structure, so pad legacy fields.
         sub_maker = ensure_legacy_submaker_fields(SubMaker())
-        audio_duration = len(audio_segment) / 1000.0  # 转换为秒
+        audio_duration = len(audio_segment) / 1000.0  # Convert to seconds
         
-        # 将音频长度转换为100纳秒单位（与edge_tts兼容）
+        # Convert audio duration to 100-nanosecond units (compatible with edge_tts)
         audio_duration_100ns = int(audio_duration * 10000000)
         
-        # 使用create_sub方法正确创建字幕项
-        sub_maker.create_sub(
-            (0, audio_duration_100ns), 
-            text
-        )
+        # Append subtitle using legacy structure (subs/offset lists)
+        sub_maker.subs = [text]
+        sub_maker.offset = [(0, audio_duration_100ns)]
         
         return sub_maker
         
@@ -1622,11 +632,11 @@ def _format_text(text: str) -> str:
 
 def _build_subtitle_formatter():
     """
-    返回统一的 SRT 行格式化函数。
+    Return a unified SRT line formatting function.
 
-    这里单独拆成一个小工具，是为了让 edge_tts 7.x 的 cues 路径
-    和项目原有的 legacy `subs/offset` 路径共用同一套字幕落盘格式，
-    避免两套逻辑各自产生细微格式差异。
+    This is separated into a small utility so that edge_tts 7.x's cues path
+    and the project's legacy `subs/offset` path can share the same subtitle
+    storage format, avoiding subtle format differences between the two.
     """
 
     def formatter(idx: int, start_time: float, end_time: float, sub_text: str) -> str:
@@ -1639,16 +649,16 @@ def _build_subtitle_formatter():
 
 def _match_script_line(script_lines: list[str], current_text: str, sub_index: int) -> str:
     """
-    尝试把当前累计的字幕文本，与脚本中的某一条标准断句匹配起来。
+    Attempt to match accumulated subtitle text with a standard sentence break in the script.
 
-    这里复用了项目原有的“按标点拆脚本，再逐段比对”的思路：
-    1. 优先精确匹配；
-    2. 再做一次去常规标点后的匹配；
-    3. 最后做一次更激进的非单词字符清洗匹配。
+    This reuses the project's existing "split script by punctuation, then segment-by-segment comparison" approach:
+    1. Prioritize exact match;
+    2. Try matching after removing standard punctuation;
+    3. Finally try more aggressive non-word character cleanup matching.
 
-    这样可以兼容：
-    - TTS 返回里可能缺失或单独拆分的标点；
-    - 中文场景下词边界和脚本文本不完全一一对应的情况。
+    This provides compatibility for:
+    - Missing or separately split punctuation in TTS returns;
+    - Cases in Chinese where word boundaries and script text don't align perfectly.
     """
     if len(script_lines) <= sub_index:
         return ""
@@ -1672,11 +682,11 @@ def _match_script_line(script_lines: list[str], current_text: str, sub_index: in
 
 def _write_subtitle_items(sub_items: list[str], subtitle_file: str) -> bool:
     """
-    将已经聚合好的字幕段写入到 SRT 文件，并做一次基本可读性验证。
+    Write aggregated subtitle segments to SRT file and perform basic readability validation.
 
-    返回值：
-    - `True`：字幕文件成功落盘且可被 moviepy 解析；
-    - `False`：字幕文件写入或解析失败。
+    Returns:
+    - `True`: Subtitle file successfully written and can be parsed by moviepy;
+    - `False`: Subtitle file write or parse failed.
     """
     try:
         ensure_file_path_exists(subtitle_file)
@@ -1700,18 +710,18 @@ def _build_subtitle_items_from_edge_cues(
     sub_maker: SubMaker, script_lines: list[str]
 ) -> list[str]:
     """
-    将 edge_tts 7.x 的细粒度 `cues` 聚合为按脚本断句的 SRT 片段。
+    Aggregate fine-grained `cues` from edge_tts 7.x into SRT segments by script sentence breaks.
 
-    背景：
-    edge_tts 7.x 的 `SubMaker.get_srt()` 更偏向逐词/逐短语的时间轴。
-    对英文做逐词高亮尚可，但中文短视频字幕如果直接照搬，会出现
-    “金钱 / 是 / 一种 / 社会 / 工具” 这种阅读体验很差的效果。
+    Background:
+    edge_tts 7.x's `SubMaker.get_srt()` tends toward word-by-word or phrase-by-phrase timeline.
+    For English word-by-word highlighting works, but for Chinese short videos,
+    simply copying would result in poor reading experience like "money / is / a / social / tool".
 
-    实现策略：
-    1. 逐个消费 cues 中的 `content`；
-    2. 累积成一段候选文本；
-    3. 当候选文本与脚本里当前目标断句匹配时，收敛为一个完整字幕段；
-    4. 使用第一条 cue 的开始时间和最后一条 cue 的结束时间，保证时间轴连续。
+    Implementation strategy:
+    1. Consume `content` from cues one by one;
+    2. Accumulate into candidate text;
+    3. When candidate text matches current target sentence break in script, converge to complete subtitle segment;
+    4. Use first cue's start time and last cue's end time to ensure timeline continuity.
     """
     formatter = _build_subtitle_formatter()
     sub_items = []
@@ -1755,10 +765,10 @@ def _build_subtitle_items_from_legacy_submaker(
     sub_maker: SubMaker, script_lines: list[str]
 ) -> list[str]:
     """
-    将项目原有 `subs/offset` 结构聚合为按脚本断句的 SRT 片段。
+    Aggregate project's legacy `subs/offset` structure into SRT segments by script sentence breaks.
 
-    这部分保留了原来的核心思路，只是拆成独立函数，便于与 edge_tts 7.x
-    的 cues 聚合逻辑共享同一套断句匹配与落盘流程。
+    This preserves the original core logic, just separated into an independent function
+    to share the same sentence matching and storage flow with edge_tts 7.x cues aggregation logic.
     """
     formatter = _build_subtitle_formatter()
     start_time = -1.0
@@ -1800,10 +810,10 @@ def _build_subtitle_items_from_legacy_submaker(
 
 def create_subtitle(sub_maker: SubMaker, text: str, subtitle_file: str):
     """
-    优化字幕文件
-    1. 将字幕文件按照标点符号分割成多行
-    2. 逐行匹配字幕文件中的文本
-    3. 生成新的字幕文件
+    Optimize subtitle file.
+    1. Split subtitle by punctuation into multiple lines
+    2. Match text in subtitle file line by line
+    3. Generate new subtitle file
     """
     text = _format_text(text)
     script_lines = utils.split_string_by_punctuations(text)
@@ -1828,10 +838,10 @@ def create_subtitle(sub_maker: SubMaker, text: str, subtitle_file: str):
 
 def _get_audio_duration_from_submaker(sub_maker: SubMaker):
     """
-    获取音频时长
+    Get audio duration.
     """
-    # 优先兼容 edge_tts 7.x 的 cues 结构；
-    # 如果是项目里其他 TTS 手工填充的旧结构，则继续读取 offset。
+    # Prioritize compatibility with edge_tts 7.x cues structure;
+    # If legacy structure manually filled by other TTS in project, continue reading offset.
     if hasattr(sub_maker, "cues") and sub_maker.cues:
         return sub_maker.cues[-1].end.total_seconds()
 
@@ -1842,7 +852,7 @@ def _get_audio_duration_from_submaker(sub_maker: SubMaker):
 
 def _get_audio_duration_from_mp3(mp3_file: str) -> float:
     """
-    获取MP3音频时长
+    Get MP3 audio duration.
     """
     if not os.path.exists(mp3_file):
         logger.error(f"MP3 file does not exist: {mp3_file}")
@@ -1858,9 +868,9 @@ def _get_audio_duration_from_mp3(mp3_file: str) -> float:
 
 def get_audio_duration(target: Union[str, SubMaker]) -> float:
     """
-    获取音频时长
-    如果是SubMaker对象，则从SubMaker中获取时长
-    如果是MP3文件，则从MP3文件中获取时长
+    Get audio duration.
+    If SubMaker object, get duration from SubMaker.
+    If MP3 file, get duration from MP3 file.
     """
     if isinstance(target, SubMaker):
         return _get_audio_duration_from_submaker(target)
@@ -1884,10 +894,10 @@ if __name__ == "__main__":
 
         voice_names = [
             "zh-CN-XiaoxiaoMultilingualNeural",
-            # 女性
+            # Female
             "zh-CN-XiaoxiaoNeural",
             "zh-CN-XiaoyiNeural",
-            # 男性
+            # Male
             "zh-CN-YunyangNeural",
             "zh-CN-YunxiNeural",
         ]

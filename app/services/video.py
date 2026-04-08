@@ -48,20 +48,20 @@ class SubClippedVideoClip:
 
 
 audio_codec = "aac"
-# Docker 里的 ffmpeg/AAC 组合在默认配置下更容易出现音频质量波动，
-# 这里显式抬高音频码率，避免成片阶段因为默认值过低而引入明显失真。
+# The ffmpeg/AAC combination in Docker is more prone to audio quality fluctuations with default configuration.
+# Here we explicitly increase the audio bitrate to avoid significant distortion due to default values being too low during the final video composition.
 audio_bitrate = "192k"
 video_codec = "libx264"
 fps = 30
 
 
 def get_ffmpeg_binary():
-    # 优先复用配置里显式指定的 ffmpeg，可避免不同环境下 PATH 不一致。
+    # Prefer to reuse the explicitly specified ffmpeg from configuration to avoid PATH inconsistency across different environments.
     return os.environ.get("IMAGEIO_FFMPEG_EXE") or "ffmpeg"
 
 
 def _escape_ffmpeg_concat_path(file_path: str) -> str:
-    # concat demuxer 使用单引号包裹路径，路径中的单引号需要先转义。
+    # The concat demuxer wraps paths in single quotes, so single quotes in the path need to be escaped first.
     return file_path.replace("'", "'\\''")
 
 
@@ -93,8 +93,8 @@ def concat_video_clips_with_ffmpeg(
     ]
 
     try:
-        # 使用 ffmpeg 只做一次串联与编码，避免 MoviePy 逐段合并时反复重编码，
-        # 从而降低画质劣化与颜色偏移风险。
+        # Use ffmpeg to do concatenation and encoding only once to avoid repeated re-encoding when
+        # MoviePy merges segments progressively, thus reducing the risk of quality degradation and color shift.
         result = subprocess.run(
             command,
             capture_output=True,
@@ -109,14 +109,14 @@ def concat_video_clips_with_ffmpeg(
 
 
 def _sanitize_image_file(image_path: str) -> str:
-    # 某些本地图片虽然能被 Pillow 打开，但会因为损坏的 EXIF/eXIf 元数据导致
-    # ImageClip 在解析阶段直接抛异常。这里重新导出一份“干净图片”，把坏元数据剥离掉。
+    # Some local images can be opened by Pillow, but ImageClip may throw an exception during parsing
+    # due to corrupted EXIF/eXIf metadata. Here we re-export a "clean image" to strip away bad metadata.
     image_root, _ = os.path.splitext(image_path)
     sanitized_path = f"{image_root}.sanitized.png"
 
     with Image.open(image_path) as image:
         image.load()
-        # 统一导出为 PNG，避免 JPEG/PNG 不同元数据路径继续把坏块带过去。
+        # Export uniformly as PNG to avoid different metadata paths between JPEG/PNG continuing to propagate bad blocks.
         cleaned_image = Image.new(image.mode, image.size)
         cleaned_image.putdata(list(image.getdata()))
         cleaned_image.save(sanitized_path)
@@ -125,7 +125,7 @@ def _sanitize_image_file(image_path: str) -> str:
 
 
 def _open_image_clip_with_fallback(image_path: str):
-    # 优先直接打开原始图片；如果因为损坏元数据失败，再尝试生成无元数据副本。
+    # Try to open the original image directly first; if it fails due to corrupted metadata, then try generating a metadata-free copy.
     try:
         return ImageClip(image_path), image_path
     except Exception as exc:
@@ -193,7 +193,7 @@ def get_bgm_file(bgm_type: str = "random", bgm_file: str = ""):
         suffix = "*.mp3"
         song_dir = utils.song_dir()
         files = glob.glob(os.path.join(song_dir, suffix))
-        # 当背景音乐目录为空时，直接回退为“不使用 BGM”，避免 random.choice([]) 抛异常。
+        # When the background music directory is empty, directly fall back to "no BGM" to avoid random.choice([]) throwing an exception.
         if not files:
             logger.warning(f"no bgm files found in song directory: {song_dir}")
             return ""
@@ -238,9 +238,9 @@ def combine_videos(
         while start_time < clip_duration:
             end_time = min(start_time + max_clip_duration, clip_duration)
 
-            # 保留所有有效分段。
-            # 这样既不会丢掉“整段视频本身就短于 max_clip_duration”的素材，
-            # 也不会吞掉长视频最后剩下的一小段尾部内容。
+            # Keep all valid segments.
+            # This way we neither lose materials where "the entire video itself is shorter than max_clip_duration"
+            # nor drop the remaining tail content of longer videos.
             if end_time > start_time:
                 subclipped_items.append(
                     SubClippedVideoClip(
@@ -459,9 +459,9 @@ def generate_video(
         logger.info(f"  ⑤ font: {font_path}")
 
     def resolve_subtitle_background_color():
-        # 兼容历史参数：API 里 `text_background_color` 既可能是布尔值，
-        # 也可能是实际颜色字符串。统一在这里归一化，避免把 True/False
-        # 直接传给 TextClip 后出现不可预期的渲染结果。
+        # Maintain backward compatibility with historical parameters: `text_background_color` in the API
+        # can be either a boolean or an actual color string. We normalize it here uniformly to avoid
+        # unpredictable rendering results when passing True/False directly to TextClip.
         if isinstance(params.text_background_color, bool):
             return "#000000" if params.text_background_color else None
         return params.text_background_color
@@ -477,10 +477,10 @@ def generate_video(
         interline = int(params.font_size * 0.25)
         line_count = wrapped_txt.count("\n") + 1
         vertical_padding = int(params.font_size * 0.35)
-        # MoviePy 在 `method=label` 下会自动收缩文本框高度，遇到多行字幕、
-        # 描边或背景色时，容易把最后一行的下半部分裁掉。这里显式传入
-        # 一个更保守的高度，把行间距和额外上下留白一并算进去，保证字幕
-        # 背景框与文字本身都能完整渲染出来。
+        # MoviePy automatically shrinks the text box height under `method=label`. With multi-line subtitles,
+        # stroke, or background color, it tends to crop off the bottom half of the last line. Here we explicitly
+        # pass a more conservative height, factoring in line spacing and additional vertical padding, ensuring
+        # that both the subtitle background frame and the text itself render completely.
         size = (
             int(max_width),
             int(txt_height + vertical_padding + (interline * line_count)),
@@ -557,8 +557,8 @@ def generate_video(
             logger.error(f"failed to add bgm: {str(e)}")
 
     video_clip = video_clip.with_audio(audio_clip)
-    # 显式沿用输入音频的采样率；如果取不到，再回退到 MoviePy 默认的 44100Hz。
-    # 这样可以减少不同运行环境，尤其是 Docker 环境中再次重采样带来的音质波动。
+    # Explicitly use the input audio's sample rate; if unavailable, fall back to MoviePy's default 44100Hz.
+    # This reduces audio quality fluctuations from resampling in different runtime environments, especially in Docker.
     output_audio_fps = int(getattr(audio_clip, "fps", 0) or 44100)
     video_clip.write_videofile(
         output_file,
@@ -575,11 +575,11 @@ def generate_video(
 
 
 def preprocess_video(materials: List[MaterialInfo], clip_duration=4):
-    # WebUI 在某些二次生成场景下可能传入空素材列表，这里直接返回空结果，避免抛出 NoneType 异常。
+    # WebUI may pass an empty material list in some secondary generation scenarios. Here we directly return an empty result to avoid throwing a NoneType exception.
     if not materials:
         return []
 
-    # 仅返回通过预处理校验的素材，避免低分辨率图片继续进入后续的视频合成流程。
+    # Only return materials that pass preprocessing validation to avoid low-resolution images entering subsequent video composition.
     valid_materials = []
 
     for material in materials:
@@ -589,13 +589,13 @@ def preprocess_video(materials: List[MaterialInfo], clip_duration=4):
         ext = utils.parse_extension(material.url)
         material_source_path = material.url
         try:
-            # 图片素材直接按图片方式读取，避免先走 VideoFileClip 误判后触发不稳定的回退分支。
+            # Read image materials directly as images to avoid misidentification by VideoFileClip triggering an unstable fallback branch.
             if ext in const.FILE_TYPE_IMAGES:
                 clip, material_source_path = _open_image_clip_with_fallback(material.url)
             else:
                 clip = VideoFileClip(material.url)
         except Exception:
-            # 非标准扩展名或探测失败时再回退到图片模式，兼容历史上直接传本地图片路径的情况。
+            # Fall back to image mode for non-standard extensions or detection failures, maintaining compatibility with historical cases of passing local image paths directly.
             try:
                 clip, material_source_path = _open_image_clip_with_fallback(material.url)
             except Exception as exc:
@@ -608,13 +608,13 @@ def preprocess_video(materials: List[MaterialInfo], clip_duration=4):
             height = clip.size[1]
             if width < 480 or height < 480:
                 logger.warning(f"low resolution material: {width}x{height}, minimum 480x480 required")
-                # 探测到低分辨率素材后立即关闭资源，并且不要把该素材返回给后续流程。
+                # Close resources immediately after detecting low-resolution materials and do not return this material to subsequent processing.
                 close_clip(clip)
                 continue
 
             if ext in const.FILE_TYPE_IMAGES:
                 logger.info(f"processing image: {material_source_path}")
-                # 探测尺寸时已经打开过一次素材，这里先释放探测句柄，再重新创建用于导出的图片 clip。
+                # We've already opened the material once during size detection. Here we first release the detection handle, then recreate the image clip for export.
                 close_clip(clip)
                 # Create an image clip and set its duration to 3 seconds
                 clip = (
@@ -643,7 +643,7 @@ def preprocess_video(materials: List[MaterialInfo], clip_duration=4):
                 material.url = video_file
                 logger.success(f"image processed: {video_file}")
             else:
-                # 普通视频素材只需要读取尺寸做校验，校验完成后立即释放句柄即可。
+                # Regular video materials only need size reading for validation. Release the handle immediately after validation is complete.
                 close_clip(clip)
         except Exception:
             close_clip(clip)

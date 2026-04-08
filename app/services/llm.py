@@ -72,13 +72,48 @@ def _generate_response(prompt: str) -> str:
                 api_key = config.app.get("moonshot_api_key")
                 model_name = config.app.get("moonshot_model_name")
                 base_url = "https://api.moonshot.cn/v1"
+            # elif llm_provider == "ollama":
+                # api_key = "ollama"  # any string works for local Ollama
+                # model_name = config.app.get("ollama_model_name", "")
+                # if not model_name:
+                #     raise ValueError(
+                #         "ollama: model_name is not set, please set ollama_model_name in the config.toml file."
+                #     )
+                # base_url = config.app.get("ollama_base_url", "")
+                # if not base_url:
+                #     base_url = "http://localhost:11434/v1"
             elif llm_provider == "ollama":
-                # api_key = config.app.get("openai_api_key")
-                api_key = "ollama"  # any string works but you are required to have one
-                model_name = config.app.get("ollama_model_name")
-                base_url = config.app.get("ollama_base_url", "")
-                if not base_url:
-                    base_url = "http://localhost:11434/v1"
+                api_key = config.app.get("ollama_api_key", "")
+                if not api_key:
+                    raise ValueError(
+                        "ollama_cloud: api_key is not set, please set ollama_cloud_api_key in the config.toml file."
+                    )
+                model_name = config.app.get("ollama_model_name", "")
+                if not model_name:
+                    raise ValueError(
+                        "ollama_cloud: model_name is not set, please set ollama_cloud_model_name in the config.toml file."
+                    )
+                try:
+                    payload = {
+                        "model": model_name,
+                        "messages": [{"role": "user", "content": prompt}],
+                        "stream": False,
+                    }
+                    headers = {
+                        "Content-Type": "application/json",
+                        "Authorization": f"Bearer {api_key}",
+                    }
+                    resp = requests.post(
+                        "https://ollama.com/api/chat",
+                        headers=headers,
+                        json=payload,
+                    )
+                    resp.raise_for_status()
+                    result = resp.json()
+                    content = result.get("message", {}).get("content", "")
+                    return _normalize_text_response(content, llm_provider)
+                except requests.exceptions.RequestException as e:
+                    raise Exception(f"[{llm_provider}] request failed: {str(e)}")
             elif llm_provider == "openai":
                 api_key = config.app.get("openai_api_key")
                 model_name = config.app.get("openai_model_name")

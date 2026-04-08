@@ -8,51 +8,51 @@
   <a href="https://github.com/harry0703/MoneyPrinterTurbo/blob/main/LICENSE"><img src="https://img.shields.io/github/license/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge" alt="License"></a>
 </p>
 <br>
-<h3>简体中文 | <a href="README-en.md">English</a></h3>
+<h3>Simplified Chinese | <a href="README-en.md">English</a></h3>
 <div align="center">
   <a href="https://trendshift.io/repositories/8731" target="_blank"><img src="https://trendshift.io/api/badge/repositories/8731" alt="harry0703%2FMoneyPrinterTurbo | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </div>
 <br>
-只需提供一个视频 <b>主题</b> 或 <b>关键词</b> ，就可以全自动生成视频文案、视频素材、视频字幕、视频背景音乐，然后合成一个高清的短视频。
+Simply provide a video <b>topic</b> or <b>keywords</b>, and you can automatically generate video scripts, video materials, video subtitles, and background music, then synthesize a high-definition short video.
 <br>
 
-<h4>Web界面</h4>
+<h4>Web Interface</h4>
 
 ![](docs/webui.jpg)
 
-<h4>API界面</h4>
+<h4>API Interface</h4>
 
 ![](docs/api.jpg)
 
 </div>
 
-## 功能特性 🎯
+## Features 🎯
 
-- [x] 完整的 **MVC架构**，代码 **结构清晰**，易于维护，支持 `API` 和 `Web界面`
-- [x] 支持视频文案 **AI自动生成**，也可以**自定义文案**
-- [x] 支持多种 **高清视频** 尺寸
-    - [x] 竖屏 9:16，`1080x1920`
-    - [x] 横屏 16:9，`1920x1080`
-- [x] 支持 **批量视频生成**，可以一次生成多个视频，然后选择一个最满意的
-- [x] 支持 **视频片段时长** 设置，方便调节素材切换频率
-- [x] 支持 **中文** 和 **英文** 视频文案
-- [x] 支持 **多种语音** 合成，可 **实时试听** 效果
-- [x] 支持 **字幕生成**，可以调整 `字体`、`位置`、`颜色`、`大小`，同时支持`字幕描边`设置
-- [x] 支持 **背景音乐**，随机或者指定音乐文件，可设置`背景音乐音量`
-- [x] 视频素材来源 **高清**，而且 **无版权**，也可以使用自己的 **本地素材**
-- [x] 支持 **OpenAI**、**Moonshot**、**Azure**、**gpt4free**、**one-api**、**通义千问**、**Google Gemini**、**Ollama**、**DeepSeek**、**MiniMax**、 **文心一言**, **Pollinations**、**ModelScope** 等多种模型接入
-    - 中国用户建议使用 **DeepSeek** 或 **Moonshot** 作为大模型提供商（国内可直接访问，不需要VPN。注册就送额度，基本够用）
+- [x] Complete **MVC architecture**, **clear code structure**, easy to maintain, supports `API` and `Web Interface`
+- [x] Support **AI auto-generation** of video scripts, or **custom scripts**
+- [x] Support multiple **high-definition video** sizes
+    - [x] Portrait 9:16, `1080x1920`
+    - [x] Landscape 16:9, `1920x1080`
+- [x] Support **batch video generation**, can generate multiple videos at once and select the best one
+- [x] Support **video clip duration** settings for easy adjustment of material switching frequency
+- [x] Support **Chinese** and **English** video scripts
+- [x] Support **multiple voice** synthesis with **real-time preview** capability
+- [x] Support **subtitle generation**, adjustable `font`, `position`, `color`, `size`, and support `subtitle outline` settings
+- [x] Support **background music**, random or specified music file, with adjustable `background music volume`
+- [x] Video materials from **high-definition** sources, **copyright-free**, or use your own **local materials**
+- [x] Support multiple model integrations including **OpenAI**, **Moonshot**, **Azure**, **gpt4free**, **one-api**, **Tongyi Qianwen**, **Google Gemini**, **Ollama**, **DeepSeek**, **MiniMax**, **Ernie Bot**, **Pollinations**, **ModelScope**, and more
+    - Chinese users are recommended to use **DeepSeek** or **Moonshot** as LLM providers (directly accessible within China without VPN. Free credits upon registration, basically sufficient)
 
-## 视频演示 📺
+## Video Demos 📺
 
-### 竖屏 9:16
+### Portrait 9:16
 
 <table>
 <thead>
 <tr>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《如何增加生活的乐趣》</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《金钱的作用》<br>更真实的合成声音</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《生命的意义是什么》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《How to Increase Life's Pleasures》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《The Role of Money》<br>More Realistic Synthesized Voice</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji> 《What is the Meaning of Life》</th>
 </tr>
 </thead>
 <tbody>
@@ -64,13 +64,13 @@
 </tbody>
 </table>
 
-### 横屏 16:9
+### Landscape 16:9
 
 <table>
 <thead>
 <tr>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《生命的意义是什么》</th>
-<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《为什么要运动》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《What is the Meaning of Life》</th>
+<th align="center"><g-emoji class="g-emoji" alias="arrow_forward">▶️</g-emoji>《Why Should We Exercise》</th>
 </tr>
 </thead>
 <tbody>
@@ -81,93 +81,91 @@
 </tbody>
 </table>
 
-## 配置要求 📦
+## System Requirements 📦
 
-- 建议最低 CPU **4核** 或以上，内存 **4G** 或以上，显卡非必须
-- Windows 10 或 MacOS 11.0 以上系统
+- Recommended minimum CPU **4 cores** or above, RAM **4GB** or above, graphics card is optional
+- Windows 10 or MacOS 11.0 or above
 
 
-## 快速开始 🚀
+## Quick Start 🚀
 
-### 推荐使用方式
+### Recommended Deployment Methods
 
-- Windows 用户：优先使用一键启动包，适合快速体验
-- MacOS / Linux 用户：优先使用 `uv sync --frozen` 进行本地部署
-- 想要隔离运行环境：优先使用 Docker 部署
+- Windows Users: Prioritize one-click startup package for quick experience
+- MacOS / Linux Users: Prioritize local deployment with `uv sync --frozen`
+- Want isolated environment: Prioritize Docker deployment
 
-### 在 Google Colab 中运行
-免去本地环境配置，点击直接在 Google Colab 中快速体验 MoneyPrinterTurbo
+### Run in Google Colab
+No need for local environment configuration, click to quickly experience MoneyPrinterTurbo in Google Colab
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/harry0703/MoneyPrinterTurbo/blob/main/docs/MoneyPrinterTurbo.ipynb)
 
+### Windows One-Click Startup Package
 
-### Windows一键启动包
+Download the one-click startup package and extract it for immediate use (paths should not contain **Chinese**, **special characters**, **spaces**)
+The current installer package is still the old v1.2.6 version. It is recommended to execute `update.bat` after downloading to update to the latest code.
 
-下载一键启动包，解压直接使用（路径不要有 **中文**、**特殊字符**、**空格**）
-当前提供的安装包仍是 `v1.2.6` 的旧打包版本，建议下载后先执行 `update.bat` 更新到最新代码。
-
-- 百度网盘（v1.2.6）: https://pan.baidu.com/s/1wg0UaIyXpO3SqIpaq790SQ?pwd=sbqx 提取码: sbqx
+- Baidu NetDisk (v1.2.6): https://pan.baidu.com/s/1wg0UaIyXpO3SqIpaq790SQ?pwd=sbqx Extract code: sbqx
 - Google Drive (v1.2.6): https://drive.google.com/file/d/1HsbzfT7XunkrCrHw5ncUjFX8XX4zAuUh/view?usp=sharing
 
-下载后，建议先**双击执行** `update.bat` 更新到**最新代码**，然后双击 `start.bat` 启动
+After downloading, it is recommended to **double-click** `update.bat` to update to the **latest code**, then double-click `start.bat` to launch
 
-启动后，会自动打开浏览器（如果打开是空白，建议换成 **Chrome** 或者 **Edge** 打开）
+After startup, the browser will automatically open (if blank, try **Chrome** or **Edge**)
 
-## 安装部署 📥
+## Installation & Deployment 📥
 
-### 前提条件
+### Prerequisites
 
-- 尽量不要使用 **中文路径**，避免出现一些无法预料的问题
-- 请确保你的 **网络** 是正常的，VPN需要打开`全局流量`模式
+- Try not to use **Chinese paths**, avoid some unpredictable issues
+- Please ensure your **network** is working normally. VPN should enable `global traffic` mode
 
-#### ① 克隆代码
+#### ① Clone the Repository
 
 ```shell
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
 ```
 
-#### ② 修改配置文件（可选，建议启动后也可以在 WebUI 里面配置）
+#### ② Modify Configuration File (Optional, can also be configured in WebUI after startup)
 
-- 将 `config.example.toml` 文件复制一份，命名为 `config.toml`
-- 按照 `config.toml` 文件中的说明，配置好 `pexels_api_keys` 和 `llm_provider`，并根据 llm_provider 对应的服务商，配置相关的
-  API Key
+- Copy `config.example.toml`, rename it to `config.toml`
+- Follow the instructions in `config.toml` to configure `pexels_api_keys` and `llm_provider`, and configure the corresponding API Key according to the llm_provider service provider
 
-### Docker部署 🐳
+### Docker Deployment 🐳
 
-#### ① 启动Docker
+#### ① Start Docker
 
-如果未安装 Docker，请先安装 https://www.docker.com/products/docker-desktop/
+If Docker is not installed, please install it first https://www.docker.com/products/docker-desktop/
 
-如果是Windows系统，请参考微软的文档：
+For Windows systems, please refer to Microsoft's documentation:
 
-1. https://learn.microsoft.com/zh-cn/windows/wsl/install
-2. https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-containers
+1. https://learn.microsoft.com/en-us/windows/wsl/install
+2. https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
 
 ```shell
 cd MoneyPrinterTurbo
 docker-compose up
 ```
 
-> 注意：最新版的docker安装时会自动以插件的形式安装docker compose，启动命令调整为docker compose up
+> Note: The latest Docker installation automatically installs docker compose as a plugin. The startup command is adjusted to `docker compose up`
 
-#### ② 访问Web界面
+#### ② Access Web Interface
 
-打开浏览器，访问 http://0.0.0.0:8501
+Open your browser and visit http://0.0.0.0:8501
 
-#### ③ 访问API文档
+#### ③ Access API Documentation
 
-打开浏览器，访问 http://0.0.0.0:8080/docs 或者 http://0.0.0.0:8080/redoc
+Open your browser and visit http://0.0.0.0:8080/docs or http://0.0.0.0:8080/redoc
 
-### 手动部署 📦
+### Manual Deployment 📦
 
-> 视频教程
+> Video Tutorials
 
-- 完整的使用演示：https://v.douyin.com/iFhnwsKY/
-- 如何在Windows上部署：https://v.douyin.com/iFyjoW3M
+- Complete usage demonstration: https://v.douyin.com/iFhnwsKY/
+- How to deploy on Windows: https://v.douyin.com/iFyjoW3M
 
-#### ① 创建虚拟环境
+#### ① Create Virtual Environment
 
-推荐使用 [uv](https://docs.astral.sh/uv/) 管理 Python 环境和依赖，默认使用 Python `3.11`
+It is recommended to use [uv](https://docs.astral.sh/uv/) to manage Python environment and dependencies, using Python `3.11` by default
 
 ```shell
 git clone https://github.com/harry0703/MoneyPrinterTurbo.git
@@ -176,7 +174,7 @@ uv python install 3.11
 uv sync --frozen
 ```
 
-如果你暂时不使用 `uv`，也可以继续使用 `venv + pip`
+If you haven't started using `uv` yet, you can continue using `venv + pip`
 
 ```shell
 python3.11 -m venv .venv
@@ -184,18 +182,18 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-说明：
-- `pyproject.toml` 是主依赖定义文件
-- `uv.lock` 是锁文件，建议默认执行 `uv sync --frozen`
-- `requirements.txt` 仅保留给旧的 `pip` 安装方式兼容使用
+Notes:
+- `pyproject.toml` is the main dependency definition file
+- `uv.lock` is the lock file, recommended to execute `uv sync --frozen` by default
+- `requirements.txt` is kept only for backward compatibility with old `pip` installation method
 
-#### ② 安装好 ImageMagick
+#### ② Install ImageMagick
 
 - Windows:
-    - 下载 https://imagemagick.org/script/download.php 选择Windows版本，切记一定要选择 **静态库** 版本，比如
+    - Download https://imagemagick.org/script/download.php, select Windows version, remember to select **static library** version, such as
       ImageMagick-7.1.1-32-Q16-x64-**static**.exe
-    - 安装下载好的 ImageMagick，**注意不要修改安装路径**
-    - 修改 `配置文件 config.toml` 中的 `imagemagick_path` 为你的 **实际安装路径**
+    - Install the downloaded ImageMagick, **be careful not to modify the installation path**
+    - Modify `imagemagick_path` in the `config.toml` configuration file to your **actual installation path**
 
 - MacOS:
   ```shell
@@ -210,9 +208,9 @@ pip install -r requirements.txt
   sudo yum install ImageMagick
   ```
 
-#### ③ 启动Web界面 🌐
+#### ③ Start Web Interface 🌐
 
-注意需要到 MoneyPrinterTurbo 项目 `根目录` 下执行以下命令
+Note: You need to run the following command from the `root directory` of the MoneyPrinterTurbo project
 
 ###### Windows
 
@@ -220,7 +218,7 @@ pip install -r requirements.txt
 uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False
 ```
 
-如果你已经手动激活了虚拟环境，也可以直接执行：
+If you have already manually activated the virtual environment, you can also directly execute:
 
 ```bat
 webui.bat
@@ -232,51 +230,51 @@ webui.bat
 uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False
 ```
 
-如果你已经手动激活了虚拟环境，也可以直接执行：
+If you have already manually activated the virtual environment, you can also directly execute:
 
 ```shell
 sh webui.sh
 ```
 
-启动后，会自动打开浏览器（如果打开是空白，建议换成 **Chrome** 或者 **Edge** 打开）
+After startup, the browser will automatically open (if blank, try **Chrome** or **Edge**)
 
-#### ④ 启动API服务 🚀
+#### ④ Start API Service 🚀
 
 ```shell
 uv run python main.py
 ```
 
-如果你已经手动激活了虚拟环境，也可以直接执行：
+If you have already manually activated the virtual environment, you can also directly execute:
 
 ```shell
 python main.py
 ```
 
-## 特别感谢 🙏
+## Special Thanks 🙏
 
-由于该项目的 **部署** 和 **使用**，对于一些小白用户来说，还是 **有一定的门槛**，在此特别感谢
-**录咖（AI智能 多媒体服务平台）** 网站基于该项目，提供的免费`AI视频生成器`服务，可以不用部署，直接在线使用，非常方便。
+Since the **deployment** and **usage** of this project still has **certain barriers** for some beginners, special thanks to
+**RecCloud (AI Intelligent Multimedia Service Platform)** which provides a free `AI Video Generator` service based on this project. You can use it directly online without deployment, very convenient.
 
-- 中文版：https://reccloud.cn
-- 英文版：https://reccloud.com
+- Chinese version: https://reccloud.cn
+- English version: https://reccloud.com
 
 ![](docs/reccloud.cn.jpg)
 
-## 感谢赞助 🙏
+## Sponsor Thanks 🙏
 
-感谢佐糖 https://picwish.cn 对该项目的支持和赞助，使得该项目能够持续的更新和维护。
+Special thanks to Picwish https://picwish.cn for supporting and sponsoring this project, enabling it to be continuously updated and maintained.
 
-佐糖专注于**图像处理领域**，提供丰富的**图像处理工具**，将复杂操作极致简化，真正实现让图像处理更简单。
+Picwish focuses on **image processing**, providing abundant **image processing tools**, simplifying complex operations to the extreme, truly making image processing simpler.
 
 ![picwish.jpg](docs/picwish.jpg)
 
-启动后，可以查看 `API文档` http://127.0.0.1:8080/docs 或者 http://127.0.0.1:8080/redoc 直接在线调试接口，快速体验。
+After startup, you can view `API documentation` at http://127.0.0.1:8080/docs or http://127.0.0.1:8080/redoc to directly debug the interface online and quickly experience it.
 
-## 语音合成 🗣
+## Voice Synthesis 🗣
 
-所有支持的声音列表，可以查看：[声音列表](./docs/voice-list.txt)
+For a list of all supported voices, see: [Voice List](./docs/voice-list.txt)
 
-2024-04-16 v1.1.2 新增了9种Azure的语音合成声音，需要配置API KEY，该声音合成的更加真实。
+v1.1.2 released on 2024-04-16 added 9 new Azure voice synthesis voices requiring API KEY configuration, with more realistic synthesis quality.
 
 ## 字幕生成 📜
 
@@ -315,80 +313,80 @@ MoneyPrinterTurbo
   │          vocabulary.json
 ```
 
-## 背景音乐 🎵
+## Background Music 🎵
 
-用于视频的背景音乐，位于项目的 `resource/songs` 目录下。
-> 当前项目里面放了一些默认的音乐，来自于 YouTube 视频，如有侵权，请删除。
+Background music for videos is located in the project's `resource/songs` directory.
+> The current project includes some default music from YouTube videos. If there is any copyright infringement, please delete them.
 
-## 字幕字体 🅰
+## Subtitle Fonts 🅰
 
-用于视频字幕的渲染，位于项目的 `resource/fonts` 目录下，你也可以放进去自己的字体。
+Used for rendering video subtitles, located in the `resource/fonts` directory of the project. You can also add your own fonts.
 
-## 常见问题 🤔
+## FAQ 🤔
 
 ### ❓RuntimeError: No ffmpeg exe could be found
 
-通常情况下，ffmpeg 会被自动下载，并且会被自动检测到。
-但是如果你的环境有问题，无法自动下载，可能会遇到如下错误：
+Normally, ffmpeg will be automatically downloaded and detected.
+However, if there is an issue with your environment and automatic download fails, you may encounter the following error:
 
 ```
 RuntimeError: No ffmpeg exe could be found.
 Install ffmpeg on your system, or set the IMAGEIO_FFMPEG_EXE environment variable.
 ```
 
-此时你可以从 https://www.gyan.dev/ffmpeg/builds/ 下载ffmpeg，解压后，设置 `ffmpeg_path` 为你的实际安装路径即可。
+You can download ffmpeg from https://www.gyan.dev/ffmpeg/builds/, extract it, and set `ffmpeg_path` to your actual installation path.
 
 ```toml
 [app]
-# 请根据你的实际路径设置，注意 Windows 路径分隔符为 \\
+# Please set according to your actual path, note that Windows path separators should be \\
 ffmpeg_path = "C:\\Users\\harry\\Downloads\\ffmpeg.exe"
 ```
 
-### ❓ImageMagick的安全策略阻止了与临时文件@/tmp/tmpur5hyyto.txt相关的操作
+### ❓ImageMagick security policy blocked operation related to temporary file @/tmp/tmpur5hyyto.txt
 
-可以在ImageMagick的配置文件policy.xml中找到这些策略。
-这个文件通常位于 /etc/ImageMagick-`X`/ 或 ImageMagick 安装目录的类似位置。
-修改包含`pattern="@"`的条目，将`rights="none"`更改为`rights="read|write"`以允许对文件的读写操作。
+You can find these policies in the ImageMagick policy.xml configuration file.
+This file is usually located in /etc/ImageMagick-`X`/ or a similar location in the ImageMagick installation directory.
+Modify the entry containing `pattern="@"`, change `rights="none"` to `rights="read|write"` to allow read and write operations on files.
 
 ### ❓OSError: [Errno 24] Too many open files
 
-这个问题是由于系统打开文件数限制导致的，可以通过修改系统的文件打开数限制来解决。
+This issue is caused by the system's limit on the number of open files. It can be solved by modifying the system's file open limit.
 
-查看当前限制
+View current limit
 
 ```shell
 ulimit -n
 ```
 
-如果过低，可以调高一些，比如
+If it's too low, you can increase it, for example
 
 ```shell
 ulimit -n 10240
 ```
 
-### ❓Whisper 模型下载失败，出现如下错误
+### ❓Whisper model download failed with the following error
 
 LocalEntryNotfoundEror: Cannot find an appropriate cached snapshotfolderfor the specified revision on the local disk and
 outgoing trafic has been disabled.
 To enablerepo look-ups and downloads online, pass 'local files only=False' as input.
 
-或者
+Or
 
 An error occured while synchronizing the model Systran/faster-whisper-large-v3 from the Hugging Face Hub:
 An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the
 specified revision on the local disk. Please check your internet connection and try again.
 Trying to load the model directly from the local cache, if it exists.
 
-解决方法：[点击查看如何从网盘手动下载模型](#%E5%AD%97%E5%B9%95%E7%94%9F%E6%88%90-)
+Solution: [Click here to see how to manually download the model from cloud storage](#%E5%AD%97%E5%B9%95%E7%94%9F%E6%88%90-)
 
-## 反馈建议 📢
+## Feedback & Suggestions 📢
 
-- 可以提交 [issue](https://github.com/harry0703/MoneyPrinterTurbo/issues)
-  或者 [pull request](https://github.com/harry0703/MoneyPrinterTurbo/pulls)。
+- You can submit [issues](https://github.com/harry0703/MoneyPrinterTurbo/issues)
+  or [pull requests](https://github.com/harry0703/MoneyPrinterTurbo/pulls).
 
-## 许可证 📝
+## License 📝
 
-点击查看 [`LICENSE`](LICENSE) 文件
+Click to view the [`LICENSE`](LICENSE) file
 
 ## Star History
 
