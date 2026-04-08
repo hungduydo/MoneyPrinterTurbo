@@ -1,5 +1,7 @@
-# Exclude common Python files and directories
+# Python cache and virtual environments
 venv/
+env/
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -8,17 +10,59 @@ __pycache__/
 *.pyw
 *.pyi
 *.egg-info/
+dist/
+build/
+*.egg
 
-# Exclude development and local files
+# Sensitive environment files
 .env
 .env.*
-*.log
-*.db
+.env.local
+.env.*.local
 
-# Exclude version control system files
+# Logs
+*.log
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Version control
 .git/
 .gitignore
+.gitattributes
 .svn/
 
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Runtime directories
 storage/
 config.toml
+
+# Tests (optional - remove for testing in docker)
+test/
+tests/
+.pytest_cache/
+.tox/
+
+# Documentation
+*.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Temporary files
+*.tmp
+*.temp
+.streamlit/
